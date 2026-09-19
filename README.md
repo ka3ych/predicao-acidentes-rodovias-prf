@@ -35,3 +35,17 @@ Repositório dedicado à pesquisa e desenvolvimento de modelos preditivos e aná
 - Registros de acidentes e óbitos de trânsito no Estado de São Paulo.
 
 - Utilizado para validação cruzada de dados de vítimas e calibração espacial em trechos paulistas.
+
+---
+
+## 💾 Acesso aos Dados Brutos (Google Drive)
+
+Devido ao limite de tamanho de arquivos suportado pelo GitHub, os arquivos brutos (`.csv`) da PRF (2023–2025) e as tabelas complementares estão hospedados em uma pasta compartilhada do Google Drive.
+
+*   🔗 **[Acessar Repositório de Dados no Google Drive](https://drive.google.com/drive/folders/1zCGJHtUm_F3HZ3kj2-8XtjhBuqwpa_8A?usp=sharing)**
+
+### Instruções para reproduzir o pipeline:
+1. Acesse o link acima e faça o download dos arquivos brutos da PRF.
+2. Salve os arquivos `.csv` baixados diretamente no diretório local do projeto:
+   ```text
+   predicao-acidentes-prf/data/raw/

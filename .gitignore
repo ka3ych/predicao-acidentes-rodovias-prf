@@ -217,5 +217,15 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-data/raw/
-data/processed/
+# Ignorar dados brutos e processados pesados
+data/raw/*
+data/processed/*
+data/outputs/*
+
+# Manter o versionamento das pastas no Git
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/outputs/.gitkeep
+
+# Ignorar qualquer outro CSV solto no projeto
+*.csv
