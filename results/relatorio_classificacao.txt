@@ -1,0 +1,34 @@
+=== Baseline (classe mais comum) ===
+              precision    recall  f1-score   support
+
+ SEM_VITIMAS      0.000     0.000     0.000      6776
+ COM_FERIDOS      0.770     1.000     0.870     32856
+       FATAL      0.000     0.000     0.000      3058
+
+    accuracy                          0.770     42690
+   macro avg      0.257     0.333     0.290     42690
+weighted avg      0.592     0.770     0.669     42690
+
+
+=== Random Forest ===
+              precision    recall  f1-score   support
+
+ SEM_VITIMAS      0.244     0.381     0.297      6776
+ COM_FERIDOS      0.839     0.608     0.705     32856
+       FATAL      0.156     0.422     0.228      3058
+
+    accuracy                          0.559     42690
+   macro avg      0.413     0.470     0.410     42690
+weighted avg      0.695     0.559     0.606     42690
+
+
+=== Regressão Logística Multinomial ===
+              precision    recall  f1-score   support
+
+ SEM_VITIMAS      0.224     0.367     0.278      6776
+ COM_FERIDOS      0.847     0.499     0.628     32856
+       FATAL      0.137     0.547     0.219      3058
+
+    accuracy                          0.482     42690
+   macro avg      0.403     0.471     0.375     42690
+weighted avg      0.697     0.482     0.543     42690

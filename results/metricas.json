@@ -1,0 +1,56 @@
+[
+  {
+    "modelo": "Baseline (classe mais comum)",
+    "acuracia": 0.7696416022487702,
+    "f1_macro": 0.28994255155799115,
+    "f1_weighted": 0.669455549823567,
+    "roc_auc_ovr_macro": 0.5,
+    "f1_por_classe": {
+      "SEM_VITIMAS": 0.0,
+      "COM_FERIDOS": 0.8698276546739735,
+      "FATAL": 0.0
+    },
+    "recall_por_classe": {
+      "SEM_VITIMAS": 0.0,
+      "COM_FERIDOS": 1.0,
+      "FATAL": 0.0
+    },
+    "segundos_treino_e_avaliacao": 1.2
+  },
+  {
+    "modelo": "Random Forest",
+    "acuracia": 0.5586554228156477,
+    "f1_macro": 0.41002864944064354,
+    "f1_weighted": 0.6060648612730506,
+    "roc_auc_ovr_macro": 0.6579724314510161,
+    "f1_por_classe": {
+      "SEM_VITIMAS": 0.2972895206307188,
+      "COM_FERIDOS": 0.7049460923576433,
+      "FATAL": 0.22785033533356866
+    },
+    "recall_por_classe": {
+      "SEM_VITIMAS": 0.381198347107438,
+      "COM_FERIDOS": 0.6079559289018749,
+      "FATAL": 0.4221713538260301
+    },
+    "segundos_treino_e_avaliacao": 23.7
+  },
+  {
+    "modelo": "Regressão Logística Multinomial",
+    "acuracia": 0.4817521667837901,
+    "f1_macro": 0.3752042558039516,
+    "f1_weighted": 0.5433782328852471,
+    "roc_auc_ovr_macro": 0.6434803556881623,
+    "f1_por_classe": {
+      "SEM_VITIMAS": 0.27818791946308724,
+      "COM_FERIDOS": 0.6282431785543322,
+      "FATAL": 0.21918166939443534
+    },
+    "recall_por_classe": {
+      "SEM_VITIMAS": 0.3670306965761511,
+      "COM_FERIDOS": 0.499299975651327,
+      "FATAL": 0.5474166121648136
+    },
+    "segundos_treino_e_avaliacao": 8.6
+  }
+]
