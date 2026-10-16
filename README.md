@@ -49,12 +49,36 @@ Devido ao limite de tamanho de arquivos suportado pelo GitHub, os arquivos bruto
 
 ## 🤖 Treinamento dos modelos
 
-Instale as dependências e rode a partir da **raiz do projeto**:
+Rode tudo a partir da **raiz do projeto**. Recomendamos usar um ambiente virtual (`.venv`), que isola as bibliotecas deste projeto das do resto do computador.
+
+**1. Criar e ativar o ambiente virtual** (só na primeira vez o `venv`; a ativação é a cada novo terminal):
+
+```bash
+# Windows (PowerShell)
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+
+# Windows (Prompt de Comando)
+python -m venv .venv
+.venv\Scripts\activate.bat
+
+# Linux / macOS
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Quando o ambiente estiver ativo, o terminal mostra `(.venv)` no início da linha. No VS Code, também é possível usar `Ctrl+Shift+P` → **Python: Create Environment** → **Venv** e marcar o `requirements.txt`.
+
+> No PowerShell, se aparecer erro de execução de scripts, rode `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` e tente de novo.
+
+**2. Instalar as dependências e treinar:**
 
 ```bash
 pip install -r requirements.txt
 python -m src.train
 ```
+
+Se a instalação do `geopandas` falhar no Windows, ele só é necessário para os notebooks de mapas; para o treino bastam `pandas numpy matplotlib scikit-learn`.
 
 O script (`src/train.py`) usa a base tratada em `data/processed/prf_2023_2025_limpo.csv`, divide em 80% treino / 20% teste (estratificado, `random_state=42`) e compara:
 
