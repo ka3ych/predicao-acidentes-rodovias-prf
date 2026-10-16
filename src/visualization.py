@@ -17,14 +17,20 @@ def plotar_matrizes_confusao(matrizes: dict, classes, caminho=None):
     """matrizes: {nome_do_modelo: matriz (linhas = real, colunas = previsto)}.
 
     Cada linha é normalizada (soma 100%), então a diagonal é a revocação (recall) da classe.
+    Como ler: a célula (linha FATAL, coluna FATAL) é a % de acidentes fatais que o modelo
+    acertou; as outras células da linha mostram para qual classe ele errou.
     """
     caminho = Path(caminho or PASTA_FIGURAS / "06_matrizes_confusao.png")
+    # Um gráfico lado a lado para cada modelo
     fig, eixos = plt.subplots(1, len(matrizes), figsize=(6 * len(matrizes), 5), squeeze=False)
     for ax, (nome, cm) in zip(eixos[0], matrizes.items()):
+        # Converte contagens em % por linha (classe real)
         pct = cm / cm.sum(axis=1, keepdims=True) * 100
         ax.imshow(pct, cmap="Blues", vmin=0, vmax=100)
+        # Escreve a % e a contagem dentro de cada célula
         for i in range(len(classes)):
             for j in range(len(classes)):
+                # Texto branco em fundo escuro, cinza escuro em fundo claro
                 cor = "white" if pct[i, j] > 55 else "#222222"
                 ax.text(j, i, f"{pct[i, j]:.1f}%\n({cm[i, j]:,})".replace(",", "."),
                         ha="center", va="center", color=cor, fontsize=9)
@@ -41,12 +47,16 @@ def plotar_matrizes_confusao(matrizes: dict, classes, caminho=None):
 
 
 def plotar_importancia(tabela, coluna, titulo, caminho, topo=15):
-    """Barras horizontais das variáveis mais importantes (tabela: DataFrame indexado pela variável)."""
+    """Barras horizontais das variáveis mais importantes (tabela: DataFrame indexado pela variável).
+
+    Mostra só as `topo` maiores, com a mais importante no alto do gráfico.
+    """
     dados = tabela[coluna].sort_values(ascending=False).head(topo)[::-1]
+    # Altura do gráfico cresce com o número de barras
     fig, ax = plt.subplots(figsize=(8, 0.4 * len(dados) + 1.5))
     ax.barh(dados.index, dados.values, color=COR, height=0.6)
     ax.set_title(titulo, fontsize=11, fontweight="bold", loc="left")
-    ax.spines[["top", "right"]].set_visible(False)
+    ax.spines[["top", "right"]].set_visible(False)  # visual mais limpo
     ax.grid(axis="x", alpha=0.25)
     ax.set_axisbelow(True)
     fig.tight_layout()
