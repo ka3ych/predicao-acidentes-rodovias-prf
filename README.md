@@ -88,14 +88,17 @@ O script (`src/train.py`) usa a base tratada em `data/processed/prf_2023_2025_li
 | Random Forest Classifier (`class_weight="balanced"`) | modelo principal do artigo |
 | Regressão Logística Multinomial (`class_weight="balanced"`) | comparação com modelo estatístico clássico |
 
+Depois da avaliação no teste, o script repete a comparação com **validação cruzada estratificada de 5 partes** nos dados de treino, para mostrar o quanto o resultado varia entre divisões diferentes (o teste continua reservado e os números dele não mudam).
+
 **Atenção a vazamento de dados:** as colunas `mortos`, `feridos_*`, `ilesos`, `pessoas`, `classificacao_acidente` e `indice_severidade` entregam a resposta e **não** são usadas como entrada.
 
 Saídas geradas:
 
 - `results/metricas.json` — acurácia, F1 (macro e weighted), ROC-AUC e F1/recall por classe
 - `results/relatorio_classificacao.txt` — precisão, recall e F1 de cada classe
+- `results/validacao_cruzada.csv` — média e desvio padrão de acurácia, F1 macro e ROC-AUC na validação cruzada (e o F1 macro de cada parte)
 - `results/importancia_variaveis.csv` e `results/importancia_grupos.csv` — importância das variáveis
 - `figures/06_matrizes_confusao.png`, `figures/07_importancia_grupos.png`, `figures/08_importancia_impureza.png`
 - `data/outputs/random_forest.joblib` — modelo treinado (grande, não vai para o GitHub)
 
-Opções: `--n-arvores 100` (mais rápido) e `--incluir-causa-tipo` (experimento extra com causa e tipo do acidente, que **não** faz parte do artigo).
+Opções: `--n-arvores 100` (mais rápido), `--folds 0` (pula a validação cruzada, que leva alguns minutos) e `--incluir-causa-tipo` (experimento extra com causa e tipo do acidente, que **não** faz parte do artigo).
