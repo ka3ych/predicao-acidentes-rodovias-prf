@@ -1,0 +1,5 @@
+rodada 1: MG/MT/PA/RO
+rodada 2: AC/AP/DF/PE/RN/SC
+rodada 3: AL/GO/MA/MS/PR
+rodada 4: BA/PB/PI/RJ/RR/TO
+rodada 5: AM/CE/ES/RS/SE/SP

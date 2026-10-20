@@ -1,0 +1,32 @@
+{
+  "parametros_rf": {
+    "min_samples_leaf": 5,
+    "max_features": "sqrt",
+    "max_depth": 20,
+    "class_weight": "balanced_subsample"
+  },
+  "pesos": {
+    "COM_FERIDOS": 1.0,
+    "FATAL": 0.9,
+    "SEM_VITIMAS": 1.0
+  },
+  "f1_macro_fora_da_amostra_padrao": 0.4279091910736306,
+  "f1_macro_fora_da_amostra_com_pesos": 0.42868340790768816,
+  "teste_decisao_padrao": {
+    "acuracia": 0.6506207542750059,
+    "f1_macro": 0.42818084052763705,
+    "f1_weighted": 0.6650866450566891,
+    "roc_auc_ovr_macro": 0.6604864060608304,
+    "recall_fatal": 0.29267495094833224,
+    "precisao_fatal": 0.18047993547086105
+  },
+  "teste_com_pesos": {
+    "acuracia": 0.6604122745373624,
+    "f1_macro": 0.4290288717110872,
+    "f1_weighted": 0.670349519351319,
+    "roc_auc_ovr_macro": 0.6604864060608304,
+    "recall_fatal": 0.2475474166121648,
+    "precisao_fatal": 0.18953430145217826
+  },
+  "segundos": 168.2
+}

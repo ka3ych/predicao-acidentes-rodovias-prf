@@ -14,6 +14,9 @@ Uso (a partir da raiz do projeto):
     python -m src.train --n-arvores 100       # mais rápido, para testar
     python -m src.train --folds 0             # pula a validação cruzada (mais rápido)
 
+Experimentos complementares (validação temporal e espacial, ajuste de hiperparâmetros e
+da regra de decisão) ficam em src/experimentos.py e não alteram os resultados deste script.
+
 Modelos comparados (mesmos dados, mesma divisão 80/20):
     0. Baseline: sempre prevê a classe mais comum (referência mínima)
     1. Random Forest Classifier (class_weight="balanced")
@@ -45,6 +48,12 @@ from src.visualization import PASTA_FIGURAS, plotar_importancia, plotar_matrizes
 # "Semente" do sorteio aleatório. Fixar o valor faz o resultado ser o mesmo
 # toda vez que o script roda, o que permite reproduzir os números do artigo.
 SEMENTE = 42
+# Hiperparâmetros do Random Forest do artigo, fixados a priori (sem ajuste). Ficam numa constante para
+# que src/experimentos.py use exatamente os mesmos valores como ponto de partida.
+#   max_depth        = profundidade máxima de cada árvore (evita decorar os dados)
+#   min_samples_leaf = mínimo de acidentes em cada folha (também evita decorar)
+#   class_weight     = "balanced" dá mais peso às classes raras (ex.: FATAL)
+PARAMS_RF = dict(max_depth=20, min_samples_leaf=5, class_weight="balanced")
 PASTA_RESULTADOS = RAIZ_PROJETO / "results"
 PASTA_SAIDAS = RAIZ_PROJETO / "data" / "outputs"  # ignorada pelo git (arquivos grandes)
 
@@ -149,15 +158,12 @@ def main():
         ]),
         # Modelo principal: conjunto de árvores de decisão que votam juntas.
         #   n_estimators     = número de árvores
-        #   max_depth        = profundidade máxima de cada árvore (evita decorar os dados)
-        #   min_samples_leaf = mínimo de acidentes em cada folha (também evita decorar)
-        #   class_weight     = "balanced" dá mais peso às classes raras (ex.: FATAL)
+        #   PARAMS_RF        = profundidade máxima, folha mínima e ponderação de classes (ver acima)
         #   n_jobs=-1        = usa todos os núcleos do processador
         "Random Forest": Pipeline([
             ("pre", preprocessador_arvores(cat, num)),
             ("clf", RandomForestClassifier(
-                n_estimators=args.n_arvores, max_depth=20, min_samples_leaf=5,
-                class_weight="balanced", n_jobs=-1, random_state=SEMENTE)),
+                n_estimators=args.n_arvores, n_jobs=-1, random_state=SEMENTE, **PARAMS_RF)),
         ]),
         # Modelo estatístico clássico, usado como comparação com o Random Forest.
         #   max_iter = número máximo de iterações até o ajuste convergir

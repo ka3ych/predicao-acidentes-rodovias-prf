@@ -1,0 +1,11 @@
+{
+  "rf": {
+    "min_samples_leaf": 5,
+    "max_features": "sqrt",
+    "max_depth": 20,
+    "class_weight": "balanced_subsample"
+  },
+  "lr": {
+    "C": 1.0
+  }
+}

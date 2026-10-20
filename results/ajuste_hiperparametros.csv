@@ -1,0 +1,15 @@
+modelo,candidato,parametros,f1_macro_media,f1_macro_desvio,segundos
+Random Forest,1,"{""max_depth"": 20, ""min_samples_leaf"": 5, ""max_features"": ""sqrt"", ""class_weight"": ""balanced""}",0.4095351659934891,0.0036983848551185804,39.6
+Random Forest,2,"{""min_samples_leaf"": 2, ""max_features"": 0.5, ""max_depth"": 20, ""class_weight"": ""balanced_subsample""}",0.39175492508497384,0.0014500366578087931,97.9
+Random Forest,3,"{""min_samples_leaf"": 5, ""max_features"": 0.3, ""max_depth"": 20, ""class_weight"": ""balanced_subsample""}",0.4254084502702646,0.0005676213941720999,55.7
+Random Forest,4,"{""min_samples_leaf"": 5, ""max_features"": ""sqrt"", ""max_depth"": 20, ""class_weight"": ""balanced_subsample""}",0.42693779950886174,0.0006001687916937421,44.6
+Random Forest,5,"{""min_samples_leaf"": 10, ""max_features"": 0.5, ""max_depth"": 30, ""class_weight"": ""balanced_subsample""}",0.42561245855696556,0.00100169113546549,85.6
+Random Forest,6,"{""min_samples_leaf"": 5, ""max_features"": 0.5, ""max_depth"": 20, ""class_weight"": ""balanced""}",0.410711156505762,0.0016069563268991023,70.4
+Random Forest,7,"{""min_samples_leaf"": 20, ""max_features"": 0.3, ""max_depth"": 20, ""class_weight"": ""balanced_subsample""}",0.41157443834720703,0.0034339676457099074,47.9
+Random Forest,8,"{""min_samples_leaf"": 5, ""max_features"": 0.5, ""max_depth"": 15, ""class_weight"": ""balanced_subsample""}",0.42336449912809004,0.0018904832346271741,77.9
+Random Forest,9,"{""min_samples_leaf"": 10, ""max_features"": 0.3, ""max_depth"": 30, ""class_weight"": ""balanced""}",0.40086415435871187,0.0033795121913664347,43.7
+Random Forest,10,"{""min_samples_leaf"": 2, ""max_features"": ""sqrt"", ""max_depth"": 10, ""class_weight"": ""balanced""}",0.386292016537086,0.0037861130639670003,28.3
+Regressão Logística Multinomial,1,"{""C"": 1.0}",0.3733253914317729,0.001520736268445027,13.5
+Regressão Logística Multinomial,2,"{""C"": 0.01}",0.3725170458588616,0.0014312281386386172,7.6
+Regressão Logística Multinomial,3,"{""C"": 0.1}",0.37314715406521337,0.001963522702976256,10.8
+Regressão Logística Multinomial,4,"{""C"": 10.0}",0.3730716448289622,0.0014706076408837656,13.9

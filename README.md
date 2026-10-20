@@ -102,3 +102,22 @@ Saídas geradas:
 - `data/outputs/random_forest.joblib` — modelo treinado (grande, não vai para o GitHub)
 
 Opções: `--n-arvores 100` (mais rápido), `--folds 0` (pula a validação cruzada, que leva alguns minutos) e `--incluir-causa-tipo` (experimento extra com causa e tipo do acidente, que **não** faz parte do artigo).
+
+### Experimentos complementares
+
+O script `src/experimentos.py` responde às limitações discutidas no artigo e **não altera** os resultados principais acima (usa a mesma divisão 80/20 e a mesma semente):
+
+```bash
+python -m src.experimentos                           # as quatro etapas (cerca de 20 minutos)
+python -m src.experimentos --etapas temporal ajuste  # só algumas etapas
+python -m src.experimentos --n-candidatos 6          # busca menor, para testar mais rápido
+```
+
+| Etapa | O que faz | Saída em `results/` |
+|---|---|---|
+| `temporal` | treina com 2023–2024 e testa em 2025 | `validacao_temporal.csv` |
+| `espacial` | 5 rodadas deixando estados inteiros fora do treino | `validacao_espacial.csv`, `validacao_espacial_ufs.txt` |
+| `ajuste` | busca de hiperparâmetros (Random Forest e Regressão Logística) com validação cruzada de 3 partes **só no treino**; o teste avalia só o resultado final | `ajuste_hiperparametros.csv` e `.json`, `modelos_ajustados.csv` |
+| `limiar` | pesos por classe sobre as probabilidades do Random Forest ajustado, escolhidos com previsões fora da amostra do treino, e curva de ponto de operação (revocação × precisão dos fatais) | `ajuste_limiar.json`, `ajuste_limiar_curva.csv` |
+
+Principais números (F1 macro): no teste aleatório, Random Forest 0,410 e Regressão Logística 0,375; treinando em 2023–2024 e testando em 2025, 0,408 e 0,373; com estados inteiros fora do treino, 0,364 e 0,358 (a vantagem do Random Forest praticamente desaparece). O ajuste de hiperparâmetros eleva o Random Forest a 0,428 no teste, mas principalmente por deslocar o ponto de operação (menos fatais detectados e menos alarmes falsos); a ROC-AUC quase não muda (0,658 → 0,661).
